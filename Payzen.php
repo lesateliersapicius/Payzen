@@ -23,6 +23,7 @@
 
 namespace Payzen;
 
+use ApyMyBox\Helper\OrderHelper;
 use Payzen\Model\Map\PayzenConfigTableMap;
 use Payzen\Model\PayzenConfigQuery;
 use Payzen\Payzen\PayzenCurrency;
@@ -366,7 +367,7 @@ class Payzen extends AbstractPaymentModule
         $payzenApi = new PayzenMultiApi();
 
         // Total order amount
-        $amount = $order->getTotalAmount();
+        $amount = OrderHelper::getTotalAmount($order);
 
         /** @var  PayzenCurrency $currency */
 

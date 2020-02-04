@@ -23,10 +23,12 @@
 
 namespace Payzen\Controller;
 
+use Exception;
 use Payzen\Form\ConfigurationForm;
 use Payzen\Model\PayzenConfigQuery;
 use Payzen\Payzen;
 use Thelia\Controller\Admin\BaseAdminController;
+use Thelia\Core\HttpFoundation\Response;
 use Thelia\Core\Security\AccessManager;
 use Thelia\Core\Security\Resource\AdminResources;
 use Thelia\Form\Exception\FormValidationException;
@@ -90,7 +92,7 @@ class ConfigurationController extends BaseAdminController
             // Form cannot be validated. Create the error message using
             // the BaseAdminController helper method.
             $error_msg = $this->createStandardFormValidationErrorMessage($ex);
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             // Any other error
              $error_msg = $ex->getMessage();
         }
@@ -108,5 +110,13 @@ class ConfigurationController extends BaseAdminController
         // Do not redirect at this point, or the error context will be lost.
         // Just redisplay the current template.
         return $this->render('module-configure', array('module_code' => 'Payzen'));
+    }
+
+    /**
+     * @return Response
+     */
+    public function renderConfigureAction()
+    {
+        return $this->render('module-configure', ['module_code' => "Payzen"]);
     }
 }

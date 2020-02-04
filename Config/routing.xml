@@ -6,8 +6,11 @@
         <default key="_controller">Payzen\Controller\ConfigurationController::configure</default>
     </route>
 
+    <route id="payzen.configure.form" path="/admin/module/payzen/configure" methods="get">
+        <default key="_controller">Payzen\Controller\ConfigurationController::renderConfigureAction</default>
+    </route>
+
     <route id="payzen.payment.confirmation" path="payzen/callback" methods="post">
         <default key="_controller">Payzen\Controller\PaymentController::processPayzenRequest</default>
     </route>
-
 </routes>
